@@ -1,0 +1,104 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --body-bg: hsl(0, 0%, 13%);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--body-bg);
+  color: white;
+  margin: 0;
+  font-family: system-ui;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.wrapper {
+  max-width: 50rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.site-title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.25rem;
+}
+
+section {
+  padding-block: 5rem;
+}
+
+.diagonal {
+  --skew-angle: -5deg;
+  --background: linear-gradient(45deg, #3c31dd, #ff0066, #dd3f31);
+  position: relative;
+  isolation: isolate;
+}
+
+.diagonal::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--background);
+  inset: 0;
+  transform: skewY(var(--skew-angle));
+}
+
+.spikes {
+  --spikes-color: var(--body-bg);
+  --spike-width: 50px;
+  --spike-height: 20px;
+  position: relative;
+  color: black;
+  background: linear-gradient(to right, #fdc830, #f37335);
+}
+
+.spikes::before,
+.spikes::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: var(--spike-height);
+  background: var(--spikes-color);
+  -webkit-mask-image: url("assets/spikes.svg");
+  -webkit-mask-size: var(--spike-width) var(--spike-height);
+  -webkit-mask-position: center;
+
+  mask-image: url("assets/spikes.svg");
+  mask-size: var(--spike-width) var(--spike-height);
+  mask-position: center;
+}
+
+.spikes::before {
+  top: 0;
+}
+
+.spikes::after {
+  bottom: 0;
+  transform: rotate(180deg);
+}
+
+.wavy {
+    background: linear-gradient(to right, #fdc830, #f37335);
+   --mask:
+    radial-gradient(31.78px at 50% 40.50px,#000 99%,#0000 101%) calc(50% - 60px) 0/120px 51% repeat-x,
+    radial-gradient(31.78px at 50% -10.5px,#0000 99%,#000 101%) 50% 30px/120px calc(51% - 30px) repeat-x,
+    radial-gradient(31.78px at 50% calc(100% - 40.50px),#000 99%,#0000 101%) calc(50% - 60px) 100%/120px 51% repeat-x,
+    radial-gradient(31.78px at 50% calc(100% + 10.50px),#0000 99%,#000 101%) 50% calc(100% - 30px)/120px calc(51% - 30px) repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+
+          /* https://css-generators.com/wavy-shapes/ */
+}
